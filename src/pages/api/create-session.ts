@@ -15,18 +15,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       const response = await sdk.session.create({
         success_url: "http://localhost:3000/success",
         cancel_url: "http://localhost:3000/cancel",
-        tokens: ["dust", "samo", "shdw"],
+        tokens: ["dust", "samo", "shdw"], // SOL and USDC are default tokens and rest whitelisted tokens are optional to add and remove
         items: [
           {
             name: "Elon's Tweet folder",
-            price: 0.01,
+            price: 0.01, // value must be in $USD
             image:
               "https://res.cloudinary.com/ddum5vpp3/image/upload/v1665883691/unknown_14_azezsk.png",
             quantity: 1,
-            size: "small",
+            size: "small", // optional param 
           },
         ],
-        shipping_fees: 0.5,
+        shipping_fees: 0.5, // value must be in $USD | optional param 
       });
 
       res.status(200).json(response);

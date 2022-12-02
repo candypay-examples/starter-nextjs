@@ -10,6 +10,9 @@ const Index: NextPage = () => {
 
   const { mutate, isLoading } = useCheckout(fetchSessionId);
 
+  // Example showcasing react hooks to generate the session url, alternatively you can use ur pre-built button.
+  // More details here- https://docs.candypay.fun/checkout/getting-started.html#integrating-the-checkout-button
+
   return (
     <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center">
       <button
