@@ -26,7 +26,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             size: "small", // optional param 
           },
         ],
-        shipping_fees: 0.5, // value must be in $USD | optional param 
+        // value must be in $USD | optional param  shipping_fees: 0.5,
       });
 
       res.status(200).json(response);
