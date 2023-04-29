@@ -1,32 +1,27 @@
-import { CandyPay } from "@candypay/checkout-sdk";
 import { NextApiRequest, NextApiResponse } from "next";
+import sdk from "../../helpers/candypay"
 
-const sdk = new CandyPay({
-  api_key: process.env.CANDYPAY_PRIVATE_API_KEY!,
-  network: "mainnet",
-  config: {
-    collect_shipping_address: false,
-  },
-});
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const response = await sdk.session.create({
-        success_url: "http://localhost:3000/success",
-        cancel_url: "http://localhost:3000/cancel",
-        tokens: ["dust", "samo", "shdw"], // SOL and USDC are default tokens and rest whitelisted tokens are optional to add and remove
+        success_url: "localhost:3000/success",
+        cancel_url: "localhost:3000/success",
+        // additional tokens you can pass, SOL and USDC are default
+        tokens: ["bonk", "samo"],
         items: [
           {
-            name: "Elon's Tweet folder",
-            price: 0.01, // value must be in $USD
-            image:
-              "https://res.cloudinary.com/ddum5vpp3/image/upload/v1665883691/unknown_14_azezsk.png",
+            name: "Solana Shades",
+            // price in USD
+            price: 0.1,
+            image: "https://imgur.com/M0l5SDh.png",
             quantity: 1,
-            size: "small", // optional param 
+            // optional product size parameter
+            size: "9",
           },
         ],
-        // value must be in $USD | optional param  shipping_fees: 0.5,
+        shipping_fees: 0.5,
       });
 
       res.status(200).json(response);
