@@ -28,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     } catch (error) {
       console.log(error);
 
-      res.status(200).json({
+      res.status(500).json({
         error: "Error creating session",
       });
     }
