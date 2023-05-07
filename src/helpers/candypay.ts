@@ -5,7 +5,7 @@ const sdk = new CandyPay({
     private_api_key: process.env.CANDYPAY_PRIVATE_API_KEY!,
     public_api_key: process.env.CANDYPAY_PUBLIC_API_KEY!,
   },
-  network: "mainnet", // use 'mainnet' for prod and 'devnet' for dev environment
+  network: process.env.NODE_ENV === "production" ? "mainnet" : "devnet",
   config: {
     collect_shipping_address: false,
   },

@@ -1,13 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import sdk from "../../helpers/candypay"
-
+import sdk from "../../helpers/candypay";
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     try {
       const response = await sdk.session.create({
-        success_url: "localhost:3000/success",
-        cancel_url: "localhost:3000/cancel",
+        success_url: "http://localhost:3000/success",
+        cancel_url: "http://localhost:3000/cancel",
         // additional tokens you can pass, SOL and USDC are default
         tokens: ["bonk", "samo"],
         items: [
