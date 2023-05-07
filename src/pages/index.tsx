@@ -1,25 +1,34 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 import type { NextPage } from "next";
 
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+
 const Index: NextPage = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
   const createSession = async () => {
+    setIsLoading(true);
     const response = await fetch("/api/create-session", {
       method: "POST",
     });
     const data = await response.json();
 
     router.push(data.payment_url);
+    setIsLoading(false);
   };
 
   return (
-    <div className="min-h-screen w-full bg-slate-100 flex items-center justify-center">
+    <main className={styles.main}>
       <button
-        className="w-36 font-body px-8 h-10 rounded-md bg-indigo-600 text-white text-[16px] hover:bg-indigo-700 grid place-items-center"
-        onClick={createSession}>
-        Checkout
+        className={styles.button}
+        onClick={createSession}
+        disabled={isLoading}
+      >
+        {isLoading ? "Loading..." : "Checkout"}
       </button>
-    </div>
+    </main>
   );
 };
 

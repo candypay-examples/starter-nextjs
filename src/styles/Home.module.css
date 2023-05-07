@@ -1,0 +1,24 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button {
+  background-color: hsla(222.2 47.4% 11.2%);
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: hsl(210 40% 98%);
+  outline: none;
+  border: none;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  height: 2.5rem;
+  padding: 0.5rem 1.5rem;
+}
+
+.button:disabled {
+  background-color: hsla(222.2 47.4% 20.2%);
+  cursor: not-allowed;
+}
